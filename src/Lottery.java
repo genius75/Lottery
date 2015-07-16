@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 
 public class Lottery extends JPanel implements ActionListener,ItemListener,KeyListener{
 	JButton how = new JButton("玩法");//新增說明按鈕
-	URL fsi= Lottery.class.getResource("/images/fs-.png");	
-	JButton start = new JButton(new ImageIcon(fsi));//新增再跑按鈕
+	static URL fs= Lottery.class.getResource("/images/lottery.png");	
+	JButton start = new JButton(new ImageIcon(fs));//新增再跑按鈕
 	JLabel jbl[]=new JLabel[3];//新增一個放圖,二個放字的Label
 	ImageIcon icon[]=new ImageIcon[7];//新增放圖陣列(7張)
 	public static String num[],SL638s,L649s;
@@ -45,9 +45,11 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 		add(jbl[0]);//圖框new出來
 		how.addActionListener(this);//設置"聽"說明按鈕
 		how.setBounds(415,2,60,20);//設置說明按鈕大小與位置
+		how.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		add(how);//show出說明按鈕
 		start.addActionListener(this);//設置"聽"說明按鈕
-		start.setBounds(420,23,50,50);//設置說明按鈕大小與位置		
+		start.setBounds(420,23,50,50);//設置說明按鈕大小與位置
+		start.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		add(start);//show出再跑按鈕		
 		jbl[1]=new JLabel();//載入註明圖框
 		jbl[1].setBounds(100,0,270,30);//設置圖框位置
@@ -287,14 +289,13 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 		}
 	}
 	public static void main(String[] args) {		
-		Lottery gogo=new Lottery();		
+		Lottery gogo=new Lottery();
 		JFrame frame = new JFrame("台灣彩卷-電腦選號");//設置程式標題
 		frame.addWindowListener(new AdapterDemo());//設置程式關閉按鈕
 		frame.getContentPane().add(gogo);//把樂透Panel放進Frame
 		frame.setSize(490,100);//設置主視窗大小
 		frame.setResizable(false);//不可縮放視窗
 		frame.setLocationRelativeTo(null);//視窗置中
-		URL fs= Lottery.class.getResource("/images/fs.png");
 		frame.setIconImage(new ImageIcon(fs).getImage());//重置視窗圖示
 		frame.setVisible(true);//可見主視窗
 		gogo.requestFocusInWindow();
