@@ -198,10 +198,10 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 	}
 	@Override
 	public void keyTyped(KeyEvent e) {
-		key = e.getKeyChar();
-		System.out.println(key);
+//		key = e.getKeyChar();
+//		System.out.println(key);
 //		if(key==KeyEvent.VK_ENTER) runcase();
-		if(key == 10) runcase();
+//		if(key == 10) runcase();
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
