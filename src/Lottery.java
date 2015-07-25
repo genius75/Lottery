@@ -290,7 +290,7 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 	}
 	public static void main(String[] args) {		
 		Lottery gogo=new Lottery();
-		JFrame frame = new JFrame("台灣彩券-電腦選號小程式v1.0");//設置程式標題
+		JFrame frame = new JFrame("台灣彩券-電腦選號小程式v1.0.1");//設置程式標題
 		frame.addWindowListener(new AdapterDemo());//設置程式關閉按鈕
 		frame.getContentPane().add(gogo);//把樂透Panel放進Frame
 		frame.setSize(490,100);//設置主視窗大小
