@@ -15,7 +15,7 @@ public class HowToPlay extends JFrame {
 	private JLabel SL638,L649,L740,DC,tD,fD,fb,google,date;
 
 	public HowToPlay() {
-		this.setTitle("台灣彩卷-玩法說明");
+		this.setTitle("台灣彩券-玩法說明");
 		this.setSize(410,200);
 		this.setLocationRelativeTo(null);//視窗置中(螢幕)
 		pan = new JPanel();
