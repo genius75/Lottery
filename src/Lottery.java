@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Graphics;
 import java.net.URL;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -19,8 +19,8 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 	JButton start = new JButton(new ImageIcon(fs));//新增再跑按鈕
 	JLabel jbl[]=new JLabel[3];//新增一個放圖,二個放字的Label
 	ImageIcon icon[]=new ImageIcon[7];//新增放圖陣列(7張)
-	public static String num[],SL638s,L649s;
-	public static Integer b[];
+	Integer b[];
+	public static String num[],SL638s,L649s;	
 	public static int box,key,i=0;
 	public static final int bSL638=1;
 	public static final int bL649=2;
@@ -78,9 +78,13 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 		}
 		Iterator SL638i=SL638a.iterator();
 		num=new String[6];
+		b=new Integer[6];
 		for(i=0;SL638i.hasNext();i++){
-			Integer integer = (Integer) SL638i.next();
-			num[i]=integer.toString();
+			b[i]=(Integer) SL638i.next();			
+		}
+		Arrays.sort(b);
+		for(i=0;i<6;i++){
+			num[i]=b[i].toString();
 			if(num[i].length()==1)
 				num[i]=" "+num[i];
 		}
@@ -98,9 +102,13 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 		}
 		Iterator L649i=L649.iterator();
 		num=new String[6];
+		b=new Integer[6];
 		for(i=0;L649i.hasNext();i++){
-			Integer integer = (Integer) L649i.next();
-			num[i]=integer.toString();
+			b[i] = (Integer) L649i.next();
+		}
+		Arrays.sort(b);
+		for(i=0;i<6;i++){
+			num[i]=b[i].toString();
 			if(num[i].length()==1)
 				num[i]=" "+num[i];
 		}
@@ -120,9 +128,13 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 		}
 		Iterator L740i=L740.iterator();
 		num=new String[7];
+		b=new Integer[7];
 		for(i=0;L740i.hasNext();i++){
-			Integer integer = (Integer) L740i.next();
-			num[i]=integer.toString();
+			b[i] = (Integer) L740i.next();
+		}
+		Arrays.sort(b);
+		for(i=0;i<7;i++){
+			num[i]=b[i].toString();
 			if(num[i].length()==1)
 				num[i]=" "+num[i];
 		}
@@ -133,12 +145,16 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 		Set DC=new HashSet();
 		while (DC.size() < 5) {
 			DC.add((int)(Math.random()*39+1));
-		}		
+		}
 		Iterator DCi=DC.iterator();
 		num=new String[5];
+		b=new Integer[5];
 		for(i=0;DCi.hasNext();i++){
-			Integer integer = (Integer) DCi.next();
-			num[i]=integer.toString();
+			b[i] = (Integer) DCi.next();
+		}
+		Arrays.sort(b);
+		for(i=0;i<5;i++){
+			num[i]=b[i].toString();
 			if(num[i].length()==1)
 				num[i]=" "+num[i];
 		}
@@ -201,7 +217,6 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 	@Override
 	public void keyTyped(KeyEvent e) {
 //		key = e.getKeyChar();
-//		System.out.println(key);
 //		if(key==KeyEvent.VK_ENTER) runcase();
 //		if(key == 10) runcase();
 	}
@@ -211,7 +226,7 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 	}
 	@Override
 	public void keyReleased(KeyEvent ek){}
-
+	
 	public void paintComponent(Graphics g) {//畫圖
 		super.paintComponent(g);
 		g.setFont(new Font(null, Font.BOLD, 24));//設置字體
@@ -225,10 +240,10 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 			g.fillOval(100+45*6,25,41,41);//畫彩球
 			g.setColor(Color.BLACK);//黑色(for字)
 			for(i=0;i<6;i++){
-				g.drawString(num[i],107+45*i,53);//秀獎號
+				g.drawString(num[i],108+45*i,54);//秀獎號
 			}
 			g.setColor(Color.WHITE);//白色(for字)
-			g.drawString(SL638s,377,53);//秀二區獎號
+			g.drawString(SL638s,378,54);//秀二區獎號
 			break;
 		  case bL649:
 			g.setColor(new Color(255,191,17));//大樂透黃色
@@ -239,10 +254,10 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 			g.fillOval(100+45*6,25,41,41);//畫彩球
 			g.setColor(Color.BLACK);//黑色(for字)
 			for(i=0;i<6;i++){
-				g.drawString(num[i],107+45*i,53);//秀獎號
+				g.drawString(num[i],108+45*i,54);//秀獎號
 			}
 			g.setColor(Color.WHITE);//白色(for字)
-			g.drawString(L649s,377,53);//秀特別號
+			g.drawString(L649s,378,54);//秀特別號
 			break;
 		  case bL740:
 			g.setColor(new Color(251,94,112));//大福彩淡紅色
@@ -251,7 +266,7 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 			}
 			g.setColor(Color.BLACK);//黑色(for字)
 			for(i=0;i<7;i++){
-				g.drawString(num[i],107+45*i,53);//秀獎號
+				g.drawString(num[i],108+45*i,54);//秀獎號
 			}
 		    break;
 		  case bDC:
@@ -261,7 +276,7 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 			}
 			g.setColor(Color.BLACK);//黑色(for字)
 			for(i=0;i<5;i++){
-				g.drawString(num[i],107+45*i,53);//秀獎號
+				g.drawString(num[i],108+45*i,54);//秀獎號
 			}
 			break;
 		  case btD:
@@ -271,7 +286,7 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 			}
 			g.setColor(Color.BLACK);//黑色(for字)
 			for(i=0;i<3;i++){
-				g.drawString(num[i],107+45*i,53);//秀獎號
+				g.drawString(num[i],108+45*i,54);//秀獎號
 			}
 			break;
 		  case bfD:
@@ -281,7 +296,7 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 			}
 			g.setColor(Color.BLACK);//黑色(for字)
 			for(i=0;i<4;i++){
-				g.drawString(num[i],107+45*i,53);//秀獎號
+				g.drawString(num[i],108+45*i,54);//秀獎號
 			}
 			break;
 		  case 7:
@@ -290,7 +305,7 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 	}
 	public static void main(String[] args) {		
 		Lottery gogo=new Lottery();
-		JFrame frame = new JFrame("台灣彩券-電腦選號小程式v1.0.1");//設置程式標題
+		JFrame frame = new JFrame("台灣彩券-電腦選號小程式v1.1.0");//設置程式標題
 		frame.addWindowListener(new AdapterDemo());//設置程式關閉按鈕
 		frame.getContentPane().add(gogo);//把樂透Panel放進Frame
 		frame.setSize(490,100);//設置主視窗大小
