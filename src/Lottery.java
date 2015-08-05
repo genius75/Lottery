@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,7 +18,7 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 	JButton start = new JButton(new ImageIcon(fs));//新增再跑按鈕
 	JLabel jbl[]=new JLabel[3];//新增一個放圖,二個放字的Label
 	ImageIcon icon[]=new ImageIcon[7];//新增放圖陣列(7張)
-	Integer b[];
+	public static Integer b[],c[];
 	public static String num[],SL638s,L649s;	
 	public static int box,key,i=0;
 	public static final int bSL638=1;
@@ -97,14 +96,19 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 		box=2;
 		jbl[0].setIcon(icon[2]);//選項小圖
 		Set L649=new HashSet();
-		while (L649.size() < 6) {
+		while (L649.size() < 7) {
 			L649.add((int)(Math.random()*49+1));
 		}
 		Iterator L649i=L649.iterator();
 		num=new String[6];
 		b=new Integer[6];
+		c=new Integer[7];
 		for(i=0;L649i.hasNext();i++){
-			b[i] = (Integer) L649i.next();
+			c[i] = (Integer) L649i.next();
+		}
+		Integer L649b=c[6];
+		for(i=0;i<6;i++){
+			b[i] = c[i];
 		}
 		Arrays.sort(b);
 		for(i=0;i<6;i++){
@@ -112,7 +116,6 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 			if(num[i].length()==1)
 				num[i]=" "+num[i];
 		}
-		Integer L649b=(int)(Math.random()*49+1);
 		if(L649b<10)
 		L649s=" "+L649b.toString();
 		else
@@ -305,7 +308,7 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 	}
 	public static void main(String[] args) {		
 		Lottery gogo=new Lottery();
-		JFrame frame = new JFrame("台灣彩券-電腦選號小程式v1.1.0");//設置程式標題
+		JFrame frame = new JFrame("台灣彩券-電腦選號小程式v1.2.1");//設置程式標題
 		frame.addWindowListener(new AdapterDemo());//設置程式關閉按鈕
 		frame.getContentPane().add(gogo);//把樂透Panel放進Frame
 		frame.setSize(490,100);//設置主視窗大小
@@ -313,7 +316,6 @@ public class Lottery extends JPanel implements ActionListener,ItemListener,KeyLi
 		frame.setLocationRelativeTo(null);//視窗置中
 		frame.setIconImage(new ImageIcon(fs).getImage());//重置視窗圖示
 		frame.setVisible(true);//可見主視窗
-		gogo.requestFocusInWindow();
 	}
 }
 class AdapterDemo extends WindowAdapter {//結束程式的方法
